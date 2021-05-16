@@ -23,13 +23,13 @@ func (svc *UserService) GetUserInfo(id int) (*model.User, error) {
 }
 
 // 创建用户
-func (svc *UserService) CreateUser(params *validator.User) (int, error) {
+func (svc *UserService) CreateUser(params *validator.UserCreate) (int, error) {
 	svc.repo = user.NewUserRepo()
 	return svc.repo.CreateUser(params)
 }
 
 // 更新用户信息
-func (svc *UserService) UpdateUser(params *validator.User) (bool, error) {
+func (svc *UserService) UpdateUser(params *validator.UserUpdate) (bool, error) {
 	svc.repo = user.NewUserRepo()
 	return svc.repo.UpdateUser(params)
 }

@@ -27,7 +27,7 @@ func (ctrl UserController) Index(ctx *gin.Context) {
 
 // 创建用户
 func (ctrl UserController) Create(ctx *gin.Context) {
-	params := validator.User{}
+	params := validator.UserCreate{}
 	err := ctx.ShouldBindJSON(&params)
 	if err != nil {
 		ctrl.Error(ctx, controller.ParamsErrCode, err.Error())
@@ -46,7 +46,7 @@ func (ctrl UserController) Create(ctx *gin.Context) {
 
 // 更新用户信息
 func (ctrl UserController) Update(ctx *gin.Context) {
-	params := validator.User{}
+	params := validator.UserUpdate{}
 	err := ctx.ShouldBindJSON(&params)
 	if err != nil {
 		ctrl.Error(ctx, controller.ParamsErrCode, err.Error())
@@ -62,13 +62,13 @@ func (ctrl UserController) Update(ctx *gin.Context) {
 
 // 删除用户
 func (ctrl UserController) Delete(ctx *gin.Context) {
-	id := ctx.Param("id")
-	userId, err := strconv.Atoi(id)
+	params := validator.UserDelete{}
+	err := ctx.ShouldBindJSON(&params)
 	if err != nil {
 		ctrl.Error(ctx, controller.ParamsErrCode, "")
 		return
 	}
-	affectedRows, err := ctrl.svc.DeleteUser(userId)
+	affectedRows, err := ctrl.svc.DeleteUser(params.Id)
 	if affectedRows == 0 {
 		ctrl.Error(ctx, controller.NotFoundErrCode, "")
 		return

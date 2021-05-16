@@ -40,7 +40,7 @@ func (repo *UserRepo) GetUserById(id int) (*model.User, error) {
 }
 
 // 创建用户
-func (repo *UserRepo) CreateUser(vUser *validator.User) (int, error) {
+func (repo *UserRepo) CreateUser(vUser *validator.UserCreate) (int, error) {
 	mUser := model.User{}
 	base := &repository.BaseRepo{}
 	base.BindModel(vUser, &mUser)
@@ -53,7 +53,7 @@ func (repo *UserRepo) CreateUser(vUser *validator.User) (int, error) {
 }
 
 // 更新用户
-func (repo *UserRepo) UpdateUser(vUser *validator.User) (bool, error) {
+func (repo *UserRepo) UpdateUser(vUser *validator.UserUpdate) (bool, error) {
 	mUser := model.User{}
 	base := &repository.BaseRepo{}
 	base.BindModel(vUser, &mUser)

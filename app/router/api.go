@@ -16,7 +16,7 @@ func RegisterApi() *gin.Engine {
 		rUser.GET("/:id", user.UserController{}.Show)
 		rUser.POST("/", user.UserController{}.Create)
 		rUser.PUT("/", user.UserController{}.Update)
-		rUser.DELETE("/:id", user.UserController{}.Delete)
+		rUser.DELETE("/", user.UserController{}.Delete)
 	}
 
 	return route
