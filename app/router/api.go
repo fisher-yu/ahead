@@ -12,11 +12,12 @@ func RegisterApi() *gin.Engine {
 
 	rUser := route.Group("/api/v1/user")
 	{
-		rUser.GET("/", user.UserController{}.Index)
-		rUser.GET("/:id", user.UserController{}.Show)
-		rUser.POST("/", user.UserController{}.Create)
-		rUser.PUT("/", user.UserController{}.Update)
-		rUser.DELETE("/", user.UserController{}.Delete)
+		userCtrl := new(user.UserController)
+		rUser.GET("/", userCtrl.Index)
+		rUser.GET("/:id", userCtrl.Show)
+		rUser.POST("/", userCtrl.Create)
+		rUser.PUT("/", userCtrl.Update)
+		rUser.DELETE("/", userCtrl.Delete)
 	}
 
 	return route

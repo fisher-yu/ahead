@@ -11,11 +11,11 @@ import (
 
 type UserController struct {
 	controller.BaseController
-	svc  user.UserService
+	svc user.UserService
 }
 
 // 用户列表
-func (ctrl UserController) Index(ctx *gin.Context) {
+func (ctrl *UserController) Index(ctx *gin.Context) {
 	users, err := ctrl.svc.GetUserList()
 	if err != nil {
 		ctrl.Error(ctx, controller.ServerErrCode, "")
@@ -26,7 +26,7 @@ func (ctrl UserController) Index(ctx *gin.Context) {
 }
 
 // 创建用户
-func (ctrl UserController) Create(ctx *gin.Context) {
+func (ctrl *UserController) Create(ctx *gin.Context) {
 	params := validator.UserCreate{}
 	err := ctx.ShouldBindJSON(&params)
 	if err != nil {
@@ -45,7 +45,7 @@ func (ctrl UserController) Create(ctx *gin.Context) {
 }
 
 // 更新用户信息
-func (ctrl UserController) Update(ctx *gin.Context) {
+func (ctrl *UserController) Update(ctx *gin.Context) {
 	params := validator.UserUpdate{}
 	err := ctx.ShouldBindJSON(&params)
 	if err != nil {
@@ -61,7 +61,7 @@ func (ctrl UserController) Update(ctx *gin.Context) {
 }
 
 // 删除用户
-func (ctrl UserController) Delete(ctx *gin.Context) {
+func (ctrl *UserController) Delete(ctx *gin.Context) {
 	params := validator.UserDelete{}
 	err := ctx.ShouldBindJSON(&params)
 	if err != nil {
@@ -78,7 +78,7 @@ func (ctrl UserController) Delete(ctx *gin.Context) {
 }
 
 // 用户信息
-func (ctrl UserController) Show(ctx *gin.Context) {
+func (ctrl *UserController) Show(ctx *gin.Context) {
 	id := ctx.Param("id")
 	userId, err := strconv.Atoi(id)
 	if err != nil {
