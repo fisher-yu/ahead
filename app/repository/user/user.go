@@ -18,7 +18,7 @@ func NewUserRepo() *UserRepo {
 // 获取用户列表
 func (repo *UserRepo) GetUsers() ([]model.User, error) {
 	var users = make([]model.User, 0)
-	err := repo.DB.Omit("auth_key", "password_hash").Find(&users)
+	err := repo.DB.Omit("password_hash").Find(&users)
 	if err != nil {
 		return nil, err
 	}
@@ -28,7 +28,7 @@ func (repo *UserRepo) GetUsers() ([]model.User, error) {
 // 获取用户信息
 func (repo *UserRepo) GetUserById(id int) (*model.User, error) {
 	var user = model.User{}
-	ok, err := repo.DB.Omit("auth_key", "password_hash").ID(id).Get(&user)
+	ok, err := repo.DB.Omit("password_hash").ID(id).Get(&user)
 	if err != nil {
 		return nil, err
 	}

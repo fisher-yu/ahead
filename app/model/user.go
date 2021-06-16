@@ -11,7 +11,6 @@ type User struct {
 	Nickname     string    `json:"nickname" xorm:"not null default '' VARCHAR(32)"`
 	Sex          int       `json:"sex" xorm:"not null default 0 comment('性别') TINYINT(1)"`
 	Avatar       int       `json:"avatar" xorm:"not null default 0 comment('头像') INT(11)"`
-	AuthKey      string    `json:"-",xorm:"not null default '' VARCHAR(32)"`
 	PasswordHash string    `json:"-",xorm:"not null default '' VARCHAR(255)"`
 	Status       int       `json:"status" xorm:"not null default 0 TINYINT(1)"`
 	UserType     int       `json:"user_type" xorm:"not null default 0 comment('0.普通用户 1.管理员') TINYINT(1)"`
